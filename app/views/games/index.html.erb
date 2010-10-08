@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th>Script</th>
     <th>Name</th>
     <th>Author</th>
     <th></th>
@@ -12,12 +11,8 @@
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.script %></td>
-    <td><%= game.name %></td>
+    <td><%= link_to game.name, edit_game_path(game) %></td>
     <td><%= game.author %></td>
-    <td><%= link_to 'Show', game %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
