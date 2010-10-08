@@ -1,4 +1,5 @@
-<h1>Listing games</h1>
+<h1>Pie Games</h1>
+<p>Click on the name of a game to play it!</p>
 
 <table>
   <tr>
@@ -6,13 +7,13 @@
     <th>Author</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= link_to game.name, edit_game_path(game) %></td>
+    <td><%= link_to game.name, game %></td>
     <td><%= game.author %></td>
+    <td><%= link_to "Edit", edit_game_path(game) %></td>
   </tr>
 <% end %>
 </table>
