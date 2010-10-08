@@ -1,4 +1,8 @@
+
+
 class GamesController < ApplicationController
+
+
   # GET /games
   # GET /games.xml
   def index
@@ -13,12 +17,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.xml
   def show
-    @game = Game.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @game }
-    end
+ 
   end
 
   # GET /games/new
