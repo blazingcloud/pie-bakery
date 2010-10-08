@@ -18,9 +18,15 @@ class PlayMiddleware < Sinatra::Base
     puts "in PlayMiddleware.............................."
     game = Game.find(game_id)
     thing = PieThing.new
-    eval(game.script, thing.get_binding)
-    request.env["PATH_INFO"].gsub!(Regexp.new("^/#{game_id}"), "")
-    request.env["PIE_DATA"] = thing
-    forward
+    begin
+      eval(game.script, thing.get_binding)
+      request.env["PATH_INFO"].gsub!(Regexp.new("^/#{game_id}"), "")
+      request.env["PIE_DATA"] = thing
+      forward
+    rescue => e
+      puts "!!!!!!!!!!!!!!! PIE SCRIPT ERROR!!!!!!!!!!!!!"
+      request.env["PIE_ERROR"] = e
+      redirect '/script_error.html'      
+    end
   end
 end
