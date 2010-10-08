@@ -1,5 +1,5 @@
 # This file is used by Rack-based servers to start the application.
-require File.expand_path('../lib/pie_rack', __FILE__)
+require ::File.expand_path('../lib/pie_rack', __FILE__)
 
 map '/play' do
   use PlayMiddleware
