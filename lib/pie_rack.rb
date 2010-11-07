@@ -1,8 +1,10 @@
 $LOAD_PATH.unshift File.expand_path(File.join(File.dirname(__FILE__), "../../pie/."))
 $LOAD_PATH.unshift File.expand_path(File.join(File.dirname(__FILE__), "../../pie/lib"))
 
+require 'erb'
 require 'pie'
 require 'pie_server'
+
 
 class PieThing
   include Pie
@@ -14,6 +16,8 @@ end
 
 
 class PlayMiddleware < Sinatra::Base
+  set :views, File.dirname(__FILE__) + '/views'
+
   get '/:game_id/*' do |game_id, stuff|
     puts "in PlayMiddleware.............................."
     game = Game.find(game_id)
@@ -25,8 +29,9 @@ class PlayMiddleware < Sinatra::Base
       forward
     rescue => e
       puts "!!!!!!!!!!!!!!! PIE SCRIPT ERROR!!!!!!!!!!!!!"
-      request.env["PIE_ERROR"] = e
-      redirect '/script_error.html'      
+      @exception = request.env["PIE_ERROR"] = e
+      erb :error
+      #redirect '/script_error.html'
     end
   end
 end
