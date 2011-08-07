@@ -29,5 +29,6 @@ gem 'pie', '0.2.8'
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 #   gem 'webrat'
 end
