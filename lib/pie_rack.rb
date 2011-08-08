@@ -23,7 +23,10 @@ class PlayMiddleware < Sinatra::Base
     game = Game.find(game_id)
     thing = PieThing.new
     begin
+      puts "-------- about to eval pie code --------"
+      puts game.script
       eval(game.script, thing.get_binding)
+      puts "-------- eval completed --------"
       request.env["PATH_INFO"].gsub!(Regexp.new("^/#{game_id}"), "")
       request.env["PIE_DATA"] = thing
       forward

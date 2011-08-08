@@ -18,5 +18,16 @@ describe GamesController do
       put :update, :id => game.id, :game =>{ :author => "Fred"}
       response.should redirect_to edit_game_path(game)
     end
+
+    it "updates the game" do
+      put :update, :id => game.id, :game =>{ :author => "Fred"}
+      game.reload.author.should == "Fred"
+    end
+
+    it "updates the game when there is a script error" do
+      bad_code = "place end:'this will not work'"
+      put :update, :id => game.id, :game =>{ :script => bad_code}
+      game.reload.script.should == bad_code
+    end
   end
 end

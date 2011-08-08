@@ -1,0 +1,10 @@
+
+
+---------------------------------
+  there is no such place as "xxx"
+---------------------------------
+
+place start:"this is the start"
+place foo:"hmm"
+
+start.path xxx:north
