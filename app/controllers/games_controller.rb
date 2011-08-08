@@ -15,7 +15,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.xml
   def show
-    redirect_to("/play/#{params[:id]}/start")
+    redirect_to(play_path(params[:id]))
   end
 
   # GET /games/new

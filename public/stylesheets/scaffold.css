@@ -1,3 +1,11 @@
+.display-game {
+  float: left;
+}
+.edit-game {
+  float: left;
+}
+
+
 body { background-color: #fff; color: #333; }
 
 body, p, ol, ul, td {
