@@ -1,7 +1,7 @@
 
 
 class GamesController < ApplicationController
-
+  include ApplicationHelper
 
   # GET /games
   def index
