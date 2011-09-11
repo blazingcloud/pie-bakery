@@ -18,6 +18,12 @@ end
 class PlayMiddleware < Sinatra::Base
   set :views, File.dirname(__FILE__) + '/views'
 
+  def handle_error(e)
+      puts "!!!!!!!!!!!!!!! PIE SCRIPT ERROR!!!!!!!!!!!!!"
+      @exception = request.env["PIE_ERROR"] = e
+      erb :error
+  end
+
   get '/:game_id/*' do |game_id, stuff|
     puts "in PlayMiddleware.............................."
     game = Game.find(game_id)
@@ -30,11 +36,15 @@ class PlayMiddleware < Sinatra::Base
       request.env["PATH_INFO"].gsub!(Regexp.new("^/#{game_id}"), "")
       request.env["PIE_DATA"] = thing
       forward
+
+    rescue SyntaxError => e
+      handle_error(e)
+
+    rescue ScriptError => e
+      handle_error(e)
+
     rescue => e
-      puts "!!!!!!!!!!!!!!! PIE SCRIPT ERROR!!!!!!!!!!!!!"
-      @exception = request.env["PIE_ERROR"] = e
-      erb :error
-      #redirect '/script_error.html'
+      handle_error(e)
     end
   end
 end
