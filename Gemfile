@@ -27,8 +27,9 @@ gem 'pie', '0.2.13'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-#   gem 'webrat'
 end
