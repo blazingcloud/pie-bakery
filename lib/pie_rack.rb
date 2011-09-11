@@ -18,10 +18,23 @@ end
 class PlayMiddleware < Sinatra::Base
   set :views, File.dirname(__FILE__) + '/views'
 
-  def handle_error(e)
-      puts "!!!!!!!!!!!!!!! PIE SCRIPT ERROR!!!!!!!!!!!!!"
+  def handle_error(game, e)
+      puts "!!!!!!!!!!!!!!! PIE SCRIPT ERROR for #{game.name} !!!!!!!!!!!!!"
       puts e.message
-      @exception = request.env["PIE_ERROR"] = e
+      @message = e.message
+      puts e.backtrace.inspect
+      s = e.backtrace.find { |item| item =~ Regexp.new(game.name) }
+      puts "s = #{s.inspect}"
+      unless s.nil?
+        match =  s.match(Regexp.new("#{game.name}:(\\d+)"))
+        p match.inspect
+        unless match.nil?
+          line_num = match[1]      
+          p line_num
+           @message = "On line #{line_num}... " + @message  
+        end
+      end
+      request.env["PIE_ERROR"] = e
       erb :error
   end
 
@@ -32,20 +45,20 @@ class PlayMiddleware < Sinatra::Base
     begin
       puts "-------- about to eval pie code --------"
       puts game.script
-      eval(game.script, thing.get_binding)
+      eval(game.script, thing.get_binding, game.name)
       puts "-------- eval completed --------"
       request.env["PATH_INFO"].gsub!(Regexp.new("^/#{game_id}"), "")
       request.env["PIE_DATA"] = thing
       forward
 
     rescue SyntaxError => e
-      handle_error(e)
+      handle_error(game, e)
 
     rescue ScriptError => e
-      handle_error(e)
+      handle_error(game, e)
 
     rescue => e
-      handle_error(e)
+      handle_error(game, e)
     end
   end
 end
