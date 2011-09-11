@@ -20,6 +20,7 @@ class PlayMiddleware < Sinatra::Base
 
   def handle_error(e)
       puts "!!!!!!!!!!!!!!! PIE SCRIPT ERROR!!!!!!!!!!!!!"
+      puts e.message
       @exception = request.env["PIE_ERROR"] = e
       erb :error
   end
