@@ -29,6 +29,7 @@ gem 'pie', '0.2.13'
 group :development, :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'launchy'
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
