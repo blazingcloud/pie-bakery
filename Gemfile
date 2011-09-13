@@ -22,6 +22,7 @@ end
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'heroku'
+  gem 'taps'
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'launchy'
