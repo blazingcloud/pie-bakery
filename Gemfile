@@ -27,6 +27,7 @@ gem 'pie', '0.2.13'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem 'heroku'
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'launchy'
