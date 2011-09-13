@@ -6,7 +6,9 @@
 </div>
 <div class="display-game">
   <%= link_to "Open Game in Another Window", play_path(@game.id), :target => "_blank"   %> <br/>
-  <iframe width="640" height="480" src="<%= play_path(@game.id) %>"/>
+  <iframe width="640" height="480" src="<%= play_path(@game.id) %>">
+  </iframe>
+  
 </div>
 
 <%= link_to 'Show', @game %> |
