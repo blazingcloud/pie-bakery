@@ -7,3 +7,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//
+
+$(document).ready( function() {
+  var textarea = $('textarea#game_script');
+  var form = $(textarea.parents('form')[0]);
+  textarea.hide();
+
+  var editor = ace.edit("pretty_editor");
+
+  form.submit(function() {
+    textarea.val(editor.getSession().getValue());
+  });
+});
