@@ -14,7 +14,6 @@
   <div class="field">
     <%= f.label "Put yer code here:" %><br />
     <%= f.text_area :script, :cols => 80, :rows => 30, %>
-    <%= f.text_area :script, :cols => 80, :rows => 30, %>
     <div  id='pretty_editor'><%= @game.script %></div>
   </div>
   <div class="field">
@@ -26,6 +25,6 @@
     <%= f.text_field :author %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Bake Pie' %>
   </div>
 <% end %>

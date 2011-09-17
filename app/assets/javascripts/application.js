@@ -10,13 +10,16 @@
 //
 
 $(document).ready( function() {
-  var textarea = $('textarea#game_script');
-  var form = $(textarea.parents('form')[0]);
-  textarea.hide();
+  if ($('#pretty_editor').length > 0) {
 
-  var editor = ace.edit("pretty_editor");
+    var textarea = $('textarea#game_script');
+    var form = $(textarea.parents('form')[0]);
+    textarea.hide();
 
-  form.submit(function() {
-    textarea.val(editor.getSession().getValue());
-  });
+    var editor = ace.edit("pretty_editor");
+
+    form.submit(function() {
+      textarea.val(editor.getSession().getValue());
+    });
+  }
 });
