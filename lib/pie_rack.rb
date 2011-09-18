@@ -6,12 +6,8 @@ require 'pie'
 require 'pie_server'
 
 
-class PieThing
+class PieGame
   include Pie
-
-  def get_binding
-    binding
-  end
 end
 
 
@@ -41,14 +37,15 @@ class PlayMiddleware < Sinatra::Base
   get '/:game_id/*' do |game_id, stuff|
     puts "in PlayMiddleware.............................."
     game = Game.find(game_id)
-    thing = PieThing.new
+    pie_instance = PieGame.new
     begin
+      pie_instance.instance_eval("template :game_screen", game.name)
       puts "-------- about to eval pie code --------"
       puts game.script
-      eval(game.script, thing.get_binding, game.name)
+      pie_instance.instance_eval(game.script, game.name)
       puts "-------- eval completed --------"
       request.env["PATH_INFO"].gsub!(Regexp.new("^/#{game_id}"), "")
-      request.env["PIE_DATA"] = thing
+      request.env["PIE_DATA"] = pie_instance
       forward
 
     rescue SyntaxError => e

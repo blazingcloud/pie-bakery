@@ -10,7 +10,7 @@ Feature: Manage games
     """
     And I fill in "game_name" with "Deep Forest"
     And I fill in "game_author" with "Grace"
-    And I press "Create Game"
+    And I press "Bake Pie"
     Then the "Deep Forest" game should display "you are in a forest" 
 
   Scenario: Delete game
