@@ -6,7 +6,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ace/ace
+//= require ace/mode-ruby
+//= require ace/theme-eclipse
 //= require_tree .
+//
 //
 
 $(document).ready( function() {
