@@ -30,4 +30,24 @@ describe GamesController do
       game.reload.script.should == bad_code
     end
   end
+
+  describe "DELETE destroy" do
+    let (:game) { Factory(:game) }
+
+    before do
+      @id = game.id
+      delete :destroy, :id => @id
+    end
+
+    it "redirects to games index" do
+      response.should redirect_to games_path
+    end
+
+    it "marks game as deleted (but doesn't really delete it)" do
+      saved_game = Game.find(@id)
+      saved_game.should_not be_nil
+      saved_game.should be_deleted
+    end
+  end
+
 end

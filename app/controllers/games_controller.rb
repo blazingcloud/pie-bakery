@@ -61,7 +61,8 @@ class GamesController < ApplicationController
   # DELETE /games/1
   def destroy
     @game = Game.find(params[:id])
-    @game.destroy
+    @game.deleted = true
+    @game.save
 
     respond_to do |format|
       format.html { redirect_to(games_url) }
