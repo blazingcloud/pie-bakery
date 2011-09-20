@@ -1,4 +1,5 @@
 <h1>Pie Games</h1>
+
 <p>Click on the name of a game to play it!</p>
 
 <table>
@@ -18,6 +19,8 @@
 </table>
 
 <br />
+<p><%= link_to 'Create a New Game', new_game_path %></p>
+
 <h2>Games in Progress (with errors)</h2>
 <table>
 
@@ -30,7 +33,6 @@
 <% end %>
 </table>
 
-<%= link_to 'New Game', new_game_path %>
 
 <p> using pie version <%= `gem list pie`.match(/.*\(([^\)]*)/)[1] %></p> 
 
