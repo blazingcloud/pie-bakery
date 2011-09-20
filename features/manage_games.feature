@@ -23,3 +23,14 @@ Feature: Manage games
       | Name | Author | Edit |
       | Safari | Jack | Edit |
 
+  Scenario: Create game with error
+    Given I am on the new game page
+    And I fill in "game_script" with text
+    """
+    place end:"you are in a forest"
+    """
+    And I fill in "game_name" with "Deep Forest"
+    And I fill in "game_author" with "Grace"
+    And I press "Bake Pie"
+    Then the "Deep Forest" game should display "you are in a forest" 
+

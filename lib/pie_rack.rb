@@ -16,6 +16,8 @@ class PlayMiddleware < Sinatra::Base
 
   def handle_error(game, e)
       puts "!!!!!!!!!!!!!!! PIE SCRIPT ERROR for #{game.name} !!!!!!!!!!!!!"
+      game.error = true
+      game.save
       puts e.message
       @message = e.message
       puts e.backtrace.inspect
@@ -46,6 +48,8 @@ class PlayMiddleware < Sinatra::Base
       puts "-------- eval completed --------"
       request.env["PATH_INFO"].gsub!(Regexp.new("^/#{game_id}"), "")
       request.env["PIE_DATA"] = pie_instance
+      game.error = false;
+      game.save
       forward
 
     rescue SyntaxError => e
