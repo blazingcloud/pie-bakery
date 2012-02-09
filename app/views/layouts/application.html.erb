@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Bakery</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Bakery</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= yield %>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Pie Games</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><%= link_to "Create Game", new_game_path%></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Code<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a target="_blank" href="http://github.com/blazingcloud/pie">Pie</a></li>
+                  <li><a target="_blank" href="http://github.com/blazingcloud/pie-bakery">Bakery</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
-</body>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+  </body>
 </html>
