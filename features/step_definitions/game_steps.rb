@@ -11,7 +11,7 @@ When /^I delete the "([^"]*.)" game$/ do |game_name|
     path = edit_game_path(game)
     puts path.inspect
     visit path
-    page.click_link "Destroy"
+    page.click_link "Delete Game"
 end
 
 Then /^the "([^"]*.)" game should display "([^"]*.)"$/ do |game_name, expected_text|

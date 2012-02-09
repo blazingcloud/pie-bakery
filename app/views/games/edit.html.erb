@@ -1,21 +1,22 @@
-<h1>Editing game</h1>
-
- <div class="edit-game">
-   <a href="#help">Help?</a>
-   <%= render 'form' %>
+<div class="page-header">
+  <h1>Edit game</h1>
 </div>
-<div class="display-game">
-  <%= link_to "Open Game in Another Window", play_path(@game.id), :target => "_blank"   %> <br/>
-  <iframe width="640" height="480" src="<%= play_path(@game.id) %>">
-  </iframe>
-  
+<div class="alert alert-info">
+  Want to know where to start? Get some <a href="#help">help</a>!
 </div>
 
-<%= link_to 'Show', @game %> |
-<%= link_to 'Back', games_path %>
+<%= render 'form' %>
 
-<hr/>
-<p>Please only delete your own game</p>
-<%= link_to 'Destroy', @game, :confirm => 'Really? you really sure about this?', :method => :delete %></td>
+<div class="page-header">
+  <h2>Preview Game</h2>
+</div>
+<p>
+<%= link_to "Open In New Window", play_path(@game.id), :target => "_blank", :class => "btn btn-large btn-primary"%>
+</p>
+<iframe width="640" height="480" src="<%= play_path(@game.id) %>"></iframe>
+
+<p>
+<%= link_to 'Delete Game', @game, :confirm => 'Really? you really sure about this?', :method => :delete, :class => "btn btn-large btn-danger" %>
+</p>
 
 <%= render 'help' %>

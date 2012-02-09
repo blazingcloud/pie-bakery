@@ -1,59 +1,48 @@
-<h1>Pie Games</h1>
-
 <p>Click on the name of a game to play it!</p>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Author</th>
-    <th>Edit </th>
-  </tr>
-
-<% Game.where(:error => false).each do |game| %>
-  <tr>
-    <td><%= link_to game.name, game %></td>
-    <td><%= game.author %></td>
-    <td><%= link_to "Edit", edit_game_path(game) %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-<p><%= link_to 'Create a New Game', new_game_path %></p>
-
-<h2>Games in Progress (with errors)</h2>
-<table>
-
-<% Game.where(:error => true).each do |game| %>
+<div class="page-header">
+  <h2>Games in Progress</h2>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Edit </th>
+    </tr>
+  </thead>
+  <tbody>
+<% Game.where(:error => false, :deleted => false).each do |game| %>
   <tr>
     <td><%= link_to game.name, game %></td>
     <td><%= game.author %></td>
     <td><%= link_to "Edit", edit_game_path(game) %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
+<p><%= link_to 'Create a New Game', new_game_path, :class=>"btn btn-large btn-primary" %></p>
 
-<p> using pie version <%= `gem list pie`.match(/.*\(([^\)]*)/)[1] %></p> 
-
-  <img src="http://img.skitch.com/20101008-qupbwtdd3ta882sf4qtr4iddnb.png" alt="pie joke"/>
-  <p>A game development DSL, inspired by _why, Yasuko Ohba's Ruby Kaigi talk
-      <a href=""http://blazingcloud.net/2010/09/05/making-dsls-with-ruby/">about how to create a DSL</a>
-      and a late night conversation with
-      @<a href="http://twitter.com/knowtheory">knowtheory</a> and
-      @<a href="http://twitter.com/wycats">wycats</a>.
-  </p>
-  <p>    
-      Code by
-      @<a href="http://twitter.com/ultrasaurus">ultrasaurus</a>,
-      @<a href="http://twitter.com/sarahmei">sarahmei</a>, and
-      @<a href="http://twitter.com/richkilmer">richkilmer</a>, with help from
-      @<a href="http://twitter.com/chadfowler">chadfowler</a>,
-      <a href="http://github.com/coatl">Caleb Clausen</a> and
-      @<a href="http://twitter.com/bmizerany">bmizerany</a>.
-      Cartoon by
-      @<a href="http://twitter.com/silverspin7987">silverspin7987</a>.
-
-  <p>Pie requires Ruby 1.9, because it is so cool. (Now, did I mean 1.9 or Pie?)</p>
-  <p>You can download the <a href="http://github.com/blazingcloud/pie">Pie code</a>, and also the <a href="https://github.com/blazingcloud/pie-bakery">Bakery code</a>. May the source be with you.</p>
-
+<div class="page-header">
+  <h2>Games in Progress <small>(with errors)</small></h2>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Edit </th>
+    </tr>
+  </thead>
+  <tbody>
+<% Game.where(:error => true, :deleted => false).each do |game| %>
+  <tr>
+    <td><%= link_to game.name, game %></td>
+    <td><%= game.author %></td>
+    <td><%= link_to "Edit", edit_game_path(game) %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<p><%= link_to 'Create a New Game', new_game_path, :class=>"btn btn-large btn-primary" %></p>
