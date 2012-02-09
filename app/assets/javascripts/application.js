@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require ace/ace
 //= require ace/mode-ruby
 //= require ace/theme-eclipse
@@ -14,6 +15,7 @@
 //
 
 $(document).ready( function() {
+  $('.dropdown-toggle').dropdown();
   if ($('#pretty_editor').length > 0) {
 
     var textarea = $('textarea#game_script');

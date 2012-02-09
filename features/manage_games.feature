@@ -22,6 +22,7 @@ Feature: Manage games
     Then I should see the following games:
       | Name | Author | Edit |
       | Safari | Jack | Edit |
+      | Name | Author | Edit |
 
   Scenario: Create game with error
     Given I am on the new game page

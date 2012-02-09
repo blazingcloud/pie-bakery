@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 gem 'thin'
+gem 'less-rails-bootstrap'
 
 gem 'sinatra'
 gem 'pie', '0.2.13'
