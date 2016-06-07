@@ -25,6 +25,7 @@ $(document).ready( function() {
     var editor = ace.edit("pretty_editor");
     var RubyMode = require("ace/mode/ruby").Mode;
     editor.getSession().setMode(new RubyMode());
+    editor.getSession().setUseWrapMode(true);
     editor.setTheme("ace/theme/eclipse");
 
     form.submit(function() {
